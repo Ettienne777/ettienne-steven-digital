@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   By Ettienne — global foundations
+   ============================================================ */
+
+:root {
+  --paper: #f6f3ee;
+  --mist: #e9e6e1;
+  --stone: #d9d5ce;
+  --forest: #243126;
+  --graphite: #171717;
+  --sage: #70826b;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lenis controls scrolling */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@layer base {
+  body {
+    @apply bg-paper text-graphite font-sans antialiased;
+    margin: 0;
+    overflow-x: hidden;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  ::selection { background: var(--forest); color: var(--paper); }
+
+  /* Bespoke cursor; hide the OS one on fine pointers */
+  @media (hover: hover) and (pointer: fine) {
+    * { cursor: none !important; }
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans uppercase text-eyebrow text-sage;
+    font-weight: 500;
+  }
+  .shell { @apply mx-auto w-full max-w-[1320px] px-6 md:px-10 lg:px-16; }
+  .rule { @apply h-px w-full bg-graphite/10; }
+
+  .reveal-line { overflow: hidden; display: block; }
+  .reveal-line > span { display: block; will-change: transform; }
+
+  .field-label { @apply eyebrow block mb-3 text-graphite/50; }
+  .field-input {
+    @apply w-full bg-transparent border-0 border-b border-graphite/15 pb-3
+      font-display text-2xl md:text-3xl text-graphite outline-none
+      transition-colors duration-500;
+  }
+  .field-input::placeholder { @apply text-graphite/20; }
+  .field-input:focus { @apply border-forest; }
+}
+
+/* Faint grain so flat areas feel like paper */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
