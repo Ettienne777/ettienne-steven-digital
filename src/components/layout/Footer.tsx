@@ -1,7 +1,8 @@
 import { scrollTo } from '../../lib/scroll'
 
-const email = 'Ettienne06@icloud.com'
+const email = 'devilliersettienne257@gmail.com'
 const phone = '063 023 2145'
+const whatsappLink = `https://wa.me/27630232145?text=${encodeURIComponent("Hi Ettienne, I'd love to talk about a project.")}`
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -24,6 +25,9 @@ export default function Footer() {
             </a>
             <a data-cursor="hover" href={`tel:${phone.replace(/\s/g, '')}`} className="transition-colors hover:text-forest">
               {phone}
+            </a>
+            <a data-cursor="hover" href={whatsappLink} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-forest">
+              WhatsApp
             </a>
             <span className="text-graphite/50">South Africa</span>
           </div>
