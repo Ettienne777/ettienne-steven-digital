@@ -62,20 +62,37 @@ export default function Hero({ ready }: { ready: boolean }) {
           </span>
         </h1>
 
-        <motion.p
-          variants={rise}
-          className="mt-8 max-w-2xl font-display text-2xl italic leading-snug text-graphite/80 md:text-3xl"
-        >
-          Digital experiences designed to be felt, not simply viewed.
-        </motion.p>
+        <div className="relative">
+          <motion.p
+            variants={rise}
+            className="mt-8 max-w-2xl font-display text-2xl italic leading-snug text-graphite/80 md:text-3xl"
+          >
+            Digital experiences designed to be felt, not simply viewed.
+          </motion.p>
 
-        <motion.p
-          variants={rise}
-          className="mt-6 max-w-xl text-base leading-relaxed text-graphite/60"
-        >
-          I create immersive websites that blend storytelling, design, motion and
-          technology into unforgettable online experiences.
-        </motion.p>
+          <motion.p
+            variants={rise}
+            className="mt-6 max-w-xl text-base leading-relaxed text-graphite/60"
+          >
+            I create immersive websites that blend storytelling, design, motion and
+            technology into unforgettable online experiences.
+          </motion.p>
+
+          {/* The face behind the studio — floats beside the copy, well clear of the headline above */}
+          <motion.div
+            initial={{ opacity: 0, y: 20, rotate: -8 }}
+            animate={ready ? { opacity: 1, y: 0, rotate: -4 } : {}}
+            transition={{ delay: 1.2, duration: 1, ease }}
+            whileHover={{ rotate: 0, scale: 1.03 }}
+            className="absolute left-[calc(100%_+_48px)] top-0 z-10 hidden w-[200px] xl:block"
+          >
+            <div className="polaroid">
+              <div className="polaroid-tape" />
+              <img src="/me/hero.jpg" alt="Ettienne" />
+              <p className="handwritten mt-2 text-center text-xl text-graphite">yep, that's me 👋</p>
+            </div>
+          </motion.div>
+        </div>
 
         <motion.div variants={rise} className="mt-12 flex flex-wrap items-center justify-center gap-4">
           <MagneticButton variant="solid" cursorLabel="Enter" onClick={() => scrollTo('#studio')}>
@@ -84,6 +101,15 @@ export default function Hero({ ready }: { ready: boolean }) {
           <MagneticButton variant="outline" cursorLabel="Say hello" onClick={() => scrollTo('#contact')}>
             Start a Project
           </MagneticButton>
+        </motion.div>
+
+        {/* Same photo, inline — shown on every screen below xl so it never gets lost */}
+        <motion.div variants={rise} className="mt-14 w-[180px] xl:hidden">
+          <div className="polaroid -rotate-3">
+            <div className="polaroid-tape" />
+            <img src="/me/hero.jpg" alt="Ettienne" />
+            <p className="handwritten mt-2 text-center text-lg text-graphite">yep, that's me 👋</p>
+          </div>
         </motion.div>
       </motion.div>
 

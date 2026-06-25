@@ -13,6 +13,7 @@
   --forest: #243126;
   --graphite: #171717;
   --sage: #70826b;
+  --gold: #c9a961;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: light;
 }
@@ -71,6 +72,16 @@ html.lenis body { height: auto; }
   }
   .field-input::placeholder { @apply text-graphite/20; }
   .field-input:focus { @apply border-forest; }
+
+  /* Personal touches — carried over from the direction mockup */
+  .polaroid {
+    @apply relative bg-paper p-3 pb-12 shadow-[0_30px_60px_-20px_rgba(23,23,23,0.35)];
+  }
+  .polaroid img { @apply block w-full rounded-[1px]; }
+  .polaroid-tape {
+    @apply absolute -top-3 left-1/2 h-7 w-20 -translate-x-1/2 -rotate-3 bg-gold/30;
+  }
+  .handwritten { font-family: theme('fontFamily.hand'); }
 }
 
 /* Faint grain so flat areas feel like paper */

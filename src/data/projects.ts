@@ -10,6 +10,7 @@ export interface Project {
   category: string
   year: string
   tagline: string
+  image: string
   palette: { bg: string; ink: string; accent: string }
   brand: { idea: string; notes: string[] }
   story: string
@@ -22,105 +23,73 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'verdant-atelier',
+    slug: 'lifestyle-cafe',
     index: '01',
-    name: 'Verdant Atelier',
-    category: 'Architecture & Interiors',
-    year: '2025',
-    tagline: 'Where structure learns to breathe.',
-    palette: { bg: '#243126', ink: '#F6F3EE', accent: '#70826B' },
+    name: 'Lifestyle Café',
+    category: 'Restaurant & Café',
+    year: '2026',
+    tagline: 'Good food. Good company. Good first impression.',
+    image: '/work/lifestyle-cafe.jpg',
+    palette: { bg: '#F4EFE4', ink: '#171717', accent: '#E8542E' },
     brand: {
-      idea: 'A studio that treats living space as a slow, growing thing — architecture that ages like a garden.',
+      idea: 'A neighbourhood café in Mookgophong that wanted to feel exactly as warm and a little playful online as it does walking through the door.',
       notes: [
-        'Identity built on negative space and a single hairline grid.',
-        'Wordmark set in a high-contrast didone, letter-spaced like a gallery plaque.',
-        'Photography replaced by light studies and material close-ups.',
+        'Hand-styled script wordmark paired with a heavy, confident headline face.',
+        'Soft full-bleed colour blooms instead of stock photography — warm, never corporate.',
+        'A real, fully transcribed menu across drinks, food and dessert — no screenshot menus.',
       ],
     },
     story:
-      'Verdant Atelier is an imagined architecture and interior practice working at the seam between the built and the grown. The brand had to feel rooted yet weightless — old money calm, never loud.',
+      'Lifestyle Café needed a site that could do two jobs at once: read as a proper local business online, and still feel like the room itself — checkerboard floors, jewel-tone armchairs, a neon sign against a living wall.',
     challenge:
-      'Architecture portfolios drown their work in dense galleries and technical jargon. Verdant needed the opposite: a site that moves at the pace of a walk through a finished building, letting each space arrive on its own.',
+      'Most café sites either drown the menu in PDF screenshots or feel stiffer than the actual café. Lifestyle Café is full of personality — the site had to carry that through without losing the basics a hungry visitor actually needs: hours, location, menu, a way to get in touch.',
     solution:
-      'A vertical promenade. Projects unfold as full-height chapters, materials revealed through scroll-linked light. The interface recedes so the spaces can speak, with a living grid that quietly reorganises as you move.',
+      'A retro-diner-meets-art-studio direction with a checkerboard strip used as a recurring structural device between sections. The full menu was typed out by hand across all categories rather than embedded as images, and a continuous-scroll gallery groups the photography by drinks, food and dessert.',
     interactions: [
-      'Scroll-linked daylight that rakes across each interior as you descend.',
-      'A hairline plan-grid that redraws itself between projects.',
-      'Material swatches that bloom to full-bleed on hover.',
+      'A checkerboard motif that threads through the page as a section divider.',
+      'Continuous-scroll gallery sectioned by drinks, food and dessert.',
+      'A floating WhatsApp button so a table or order enquiry is one tap away.',
     ],
-    services: ['Brand Identity', 'Art Direction', 'Experience Design', 'Web Development'],
+    services: ['Web Design', 'Web Development', 'Menu Build', 'WhatsApp Integration'],
     metrics: [
-      { label: 'Concept', value: 'Living Architecture' },
-      { label: 'Surfaces', value: 'Stone / Oak / Glass' },
-      { label: 'Pacing', value: 'Promenade' },
+      { label: 'Location', value: 'Mookgophong, Limpopo' },
+      { label: 'Menu items', value: '100+ transcribed' },
+      { label: 'Built in', value: 'Days, not months' },
     ],
   },
   {
-    slug: 'solenne-parfums',
+    slug: 'a-ha-driving-school',
     index: '02',
-    name: 'Solenne Parfums',
-    category: 'Luxury Fragrance',
-    year: '2025',
-    tagline: 'A scent you can almost see.',
-    palette: { bg: '#E9E6E1', ink: '#171717', accent: '#70826B' },
+    name: 'A-HA Driving School',
+    category: 'Driving School',
+    year: '2026',
+    tagline: "Don't just dream it, drive it.",
+    image: '/work/aha-driving.jpg',
+    palette: { bg: '#10141C', ink: '#F6F3EE', accent: '#E8542E' },
     brand: {
-      idea: 'A fragrance house that bottles a single, fleeting moment of light — the hour before dusk.',
+      idea: 'K53 learner\u2019s and driver\u2019s license training in Mookgopong — a school that needed to feel as trustworthy as it is, fast.',
       notes: [
-        'A wordmark that thins as it rises, like a note evaporating.',
-        'Palette drawn from skin, amber glass and dried botanicals.',
-        'Motion modelled on diffusion — everything drifts, nothing snaps.',
+        'Dark asphalt navy base with cone-orange as the single punch colour.',
+        'Number-plate styled pricing cards for a brief that\u2019s genuinely about cars.',
+        'An animated car that drives under the headline the moment the page loads.',
       ],
     },
     story:
-      'Solenne is an invented maison built around olfactory storytelling. The brief: translate something invisible — scent — into an experience the eye can follow.',
+      'A-HA Driving School was By Ettienne\u2019s first paying client — real lessons, real instructors, real people passing their tests every week, and, until this site, no way for any of that to show up online.',
     challenge:
-      'Fragrance is the hardest thing to sell on a screen. You cannot smell a website. The work had to evoke a feeling of diffusion, warmth and intimacy without a single literal product shot dominating the page.',
+      'A new client with no existing web presence needed a site that could convert a cold visitor into a booked lesson immediately, on a phone, without a single wasted scroll.',
     solution:
-      'Each fragrance becomes a colour-field that breathes and bleeds as you scroll, paired with editorial notes written like prose poetry. A cursor-reactive haze follows the reader, so the page itself feels scented.',
+      '"Structurally serious, emotionally playful." Pricing and services sit in clean, number-plate styled cards, while a "wall of passes" testimonial section uses slightly rotated, pinned photo cards with orange "passed!" stamps — proof, not promises.',
     interactions: [
-      'A volumetric haze that warms and drifts toward the cursor.',
-      'Scent notes that fade in by accord — top, heart, base — on scroll.',
-      'Bottle silhouettes that refract the colour-field behind them.',
+      'An SVG car that drives across the screen under the headline on load.',
+      '"Wall of passes" — rotated, pinned student photo cards with a passed stamp.',
+      'A floating WhatsApp button that opens straight into booking a lesson.',
     ],
-    services: ['Brand World', 'Creative Direction', 'Motion Design', 'Web Development'],
+    services: ['Web Design', 'Web Development', 'Local SEO', 'WhatsApp Integration'],
     metrics: [
-      { label: 'Concept', value: 'The Hour Before Dusk' },
-      { label: 'Accords', value: 'Amber / Iris / Salt' },
-      { label: 'Mood', value: 'Intimate' },
-    ],
-  },
-  {
-    slug: 'north-and-stone',
-    index: '03',
-    name: 'North & Stone',
-    category: 'Property Development',
-    year: '2025',
-    tagline: 'Permanence, made to feel inevitable.',
-    palette: { bg: '#D9D5CE', ink: '#171717', accent: '#243126' },
-    brand: {
-      idea: 'A developer of landmark residences whose work is meant to outlast its makers — quiet monuments.',
-      notes: [
-        'A monumental, near-architectural wordmark carved from one weight.',
-        'Layouts built on heavy margins and a single decisive column.',
-        'Imagery implied through masking and material texture, not stock photos.',
-      ],
-    },
-    story:
-      'North & Stone is a conceptual property developer of considered, generational homes. The identity needed the gravity of stone with none of the coldness.',
-    challenge:
-      'Property sites compete on amenities and lists. North & Stone sells conviction — the sense that a place was always meant to exist. The site had to feel like standing in front of a finished building, not browsing a brochure.',
-    solution:
-      'A cinematic monolith. The site opens on a single declarative statement, then reveals developments as masked monuments that assemble from fragments as you scroll. Numbers are treated as inscriptions, not data points.',
-    interactions: [
-      'Developments that assemble from sliced fragments on entry.',
-      'Inscription-style figures that count up as they settle.',
-      'A parallax horizon that steadies as each project locks into place.',
-    ],
-    services: ['Brand Identity', 'Experience Design', 'Web Development', 'Creative Direction'],
-    metrics: [
-      { label: 'Concept', value: 'Quiet Monuments' },
-      { label: 'Material', value: 'Limestone / Bronze' },
-      { label: 'Tone', value: 'Inevitable' },
+      { label: 'Location', value: 'Mookgopong & surrounds' },
+      { label: 'Status', value: 'First paying client' },
+      { label: 'Care plan', value: 'R400/mo ongoing' },
     ],
   },
 ]

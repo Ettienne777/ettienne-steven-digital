@@ -4,6 +4,7 @@ import Philosophy from '../components/sections/Philosophy'
 import About from '../components/sections/About'
 import FeaturedProjects from '../components/sections/FeaturedProjects'
 import Services from '../components/sections/Services'
+import Booking from '../components/sections/Booking'
 import Process from '../components/sections/Process'
 import Contact from '../components/sections/Contact'
 
@@ -26,6 +27,7 @@ export default function Home({ ready }: { ready: boolean }) {
         <About />
         <FeaturedProjects />
         <Services />
+        <Booking />
         <Process />
         <Contact />
       </main>

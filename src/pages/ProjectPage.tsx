@@ -86,8 +86,17 @@ export default function ProjectPage() {
         />
       </header>
 
-      {/* The brand idea */}
+      {/* The actual, live site */}
       <section className="bg-paper">
+        <div className="shell py-16 md:py-20">
+          <div className="overflow-hidden rounded-[6px] border border-graphite/10 shadow-[0_40px_80px_-30px_rgba(23,23,23,0.25)]">
+            <img src={project.image} alt={`${project.name} — live site`} className="block w-full" />
+          </div>
+        </div>
+      </section>
+
+      {/* The brand idea */}
+      <section className="border-t border-graphite/10 bg-paper">
         <div className="shell grid gap-12 py-24 md:grid-cols-12 md:py-32">
           <p className="eyebrow md:col-span-3">The Brand</p>
           <div className="md:col-span-9">
@@ -203,7 +212,7 @@ export default function ProjectPage() {
           className="group block"
         >
           <div className="shell flex flex-col items-center py-24 text-center md:py-36">
-            <p className="eyebrow mb-6">Next Concept</p>
+            <p className="eyebrow mb-6">Next Project</p>
             <h2 className="font-display text-6xl font-light text-forest transition-colors duration-500 group-hover:text-sage md:text-8xl">
               {next.name}
             </h2>

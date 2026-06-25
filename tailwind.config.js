@@ -11,10 +11,12 @@ export default {
         forest: '#243126',
         graphite: '#171717',
         sage: '#70826B',
+        gold: '#C9A961',
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        hand: ['"Caveat"', 'cursive'],
       },
       fontSize: {
         eyebrow: ['0.72rem', { lineHeight: '1', letterSpacing: '0.28em' }],
