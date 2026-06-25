@@ -1,7 +1,7 @@
 import RevealText from '../ui/RevealText'
 import Reveal from '../ui/Reveal'
 
-const chips = ['📍 Welkom, SA', '🎨 Self-taught designer', '☕ Fuelled by coffee', '🌿 Detail-obsessed']
+const chips = ['📍 Welkom, SA', '💻 Designer & developer', '☕ Fuelled by coffee', '🌿 Detail-obsessed']
 
 export default function About() {
   return (
@@ -84,12 +84,12 @@ export default function About() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p>
-                  I&rsquo;m <strong className="text-forest">self-taught</strong> — a little
-                  obsessive about details nobody else notices, and genuinely happiest when a
-                  layout finally clicks. By Ettienne started as a one-page-site side hustle in
-                  Welkom, and somewhere along the way it became the thing I actually care
-                  about. Every project below is a real, live business, not a concept — I treat
-                  each one exactly as I&rsquo;d want to be treated as a client:
+                  I&rsquo;m a little obsessive about details nobody else notices, and
+                  genuinely happiest when a layout finally clicks. By Ettienne started as a
+                  one-page-site side hustle in Welkom, and somewhere along the way it became
+                  the thing I actually care about. Every project below is a real, live
+                  business, not a concept — I treat each one exactly as I&rsquo;d want to be
+                  treated as a client:
                 </p>
               </Reveal>
             </div>

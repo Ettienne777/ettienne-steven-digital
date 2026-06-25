@@ -2,11 +2,12 @@ import { useState, type FormEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import RevealText from '../ui/RevealText'
 
-const email = 'Ettienne06@icloud.com'
+const email = 'byettienne257@gmail.com'
 const phone = '063 023 2145'
 const whatsapp = 'https://wa.me/27630232145'
+const WEB3FORMS_ACCESS_KEY = '20b1ac60-b127-4f9a-8b37-639c16341b8a'
 
-type Status = 'idle' | 'loading' | 'success'
+type Status = 'idle' | 'loading' | 'success' | 'error'
 
 interface FormState {
   name: string
@@ -47,14 +48,39 @@ export default function Contact() {
     return Object.keys(next).length === 0
   }
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     if (status === 'loading') return
     if (!validate()) return
     setStatus('loading')
-    // Front-end demo: simulate a send. Wire a real endpoint (e.g. Formspree,
-    // Resend, or your own API) here when you take this live.
-    setTimeout(() => setStatus('success'), 1600)
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New enquiry from ${form.name} — By Ettienne`,
+          from_name: `${form.name} (via byettienne.co.za)`,
+          name: form.name,
+          email: form.email,
+          phone: form.phone || 'Not provided',
+          company: form.company || 'Not provided',
+          'Project Type': form.projectType || 'Not specified',
+          Budget: form.budget || 'Not specified',
+          Timeline: form.timeline || 'Not specified',
+          message: form.message,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   const reset = () => {
@@ -125,6 +151,38 @@ export default function Contact() {
                   >
                     Send another →
                   </button>
+                </motion.div>
+              ) : status === 'error' ? (
+                <motion.div
+                  key="error"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex min-h-[420px] flex-col items-start justify-center"
+                >
+                  <span className="mb-6 flex h-14 w-14 items-center justify-center rounded-full border border-sage text-sage">
+                    !
+                  </span>
+                  <h3 className="font-display text-4xl font-light text-forest md:text-5xl">
+                    Hmm, that didn&rsquo;t send.
+                  </h3>
+                  <p className="mt-5 max-w-md text-lg leading-relaxed text-graphite/60">
+                    Something went wrong on my end. Try again, or reach me directly —
+                    I&rsquo;ll definitely see a WhatsApp message.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <button
+                      data-cursor="hover"
+                      onClick={() => setStatus('idle')}
+                      className="text-sm font-medium text-forest underline-offset-4 hover:underline"
+                    >
+                      Try again →
+                    </button>
+                    <a data-cursor="hover" href={whatsapp} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-forest underline-offset-4 hover:underline">
+                      WhatsApp me instead →
+                    </a>
+                  </div>
                 </motion.div>
               ) : (
                 <motion.form

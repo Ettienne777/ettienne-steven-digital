@@ -1,6 +1,6 @@
 import { scrollTo } from '../../lib/scroll'
 
-const email = 'Ettienne06@icloud.com'
+const email = 'byettienne257@gmail.com'
 const phone = '063 023 2145'
 const whatsapp = 'https://wa.me/27630232145'
 
