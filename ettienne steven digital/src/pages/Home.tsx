@@ -4,6 +4,7 @@ import Philosophy from '../components/sections/Philosophy'
 import About from '../components/sections/About'
 import FeaturedProjects from '../components/sections/FeaturedProjects'
 import Services from '../components/sections/Services'
+import Booking from '../components/sections/Booking'
 import Process from '../components/sections/Process'
 import Contact from '../components/sections/Contact'
 
@@ -15,14 +16,6 @@ export default function Home({ ready }: { ready: boolean }) {
     <>
       {/* Fixed atmospheric backdrop, behind all content */}
       <div className="pointer-events-none fixed inset-0 z-0">
-        {/* Soft glow halo for depth — sits behind the transparent canvas */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(55% 45% at 50% 42%, rgba(112,130,107,0.18), transparent 70%), radial-gradient(38% 30% at 62% 30%, rgba(201,168,106,0.10), transparent 70%)',
-          }}
-        />
         <Suspense fallback={null}>
           <Atmosphere />
         </Suspense>
@@ -34,6 +27,7 @@ export default function Home({ ready }: { ready: boolean }) {
         <About />
         <FeaturedProjects />
         <Services />
+        <Booking />
         <Process />
         <Contact />
       </main>

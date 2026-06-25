@@ -4,6 +4,7 @@ import RevealText from '../ui/RevealText'
 
 const email = 'Ettienne06@icloud.com'
 const phone = '063 023 2145'
+const whatsapp = 'https://wa.me/27630232145'
 
 type Status = 'idle' | 'loading' | 'success'
 
@@ -82,6 +83,9 @@ export default function Contact() {
 
             <div className="mt-12 space-y-3 text-sm">
               <p className="text-graphite">Ettienne</p>
+              <a data-cursor="hover" href={whatsapp} target="_blank" rel="noopener noreferrer" className="block text-graphite/70 transition-colors hover:text-forest">
+                WhatsApp me
+              </a>
               <a data-cursor="hover" href={`mailto:${email}`} className="block text-graphite/70 transition-colors hover:text-forest">
                 {email}
               </a>

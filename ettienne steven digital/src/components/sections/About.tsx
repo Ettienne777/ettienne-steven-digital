@@ -1,17 +1,27 @@
 import RevealText from '../ui/RevealText'
 import Reveal from '../ui/Reveal'
 
-const steps = ['Strategy', 'Research', 'Design', 'Development', 'Refinement']
+const chips = ['📍 Welkom, SA', '🎨 Self-taught designer', '☕ Fuelled by coffee', '🌿 Detail-obsessed']
 
 export default function About() {
   return (
     <section id="studio" className="relative z-10 bg-paper">
       <div className="shell border-t border-graphite/10 py-24 md:py-36">
         <div className="grid gap-16 md:grid-cols-12">
-          {/* Sticky meta rail */}
+          {/* Sticky meta rail + the actual person */}
           <aside className="md:col-span-4 lg:col-span-3">
             <div className="md:sticky md:top-28">
-              <p className="eyebrow mb-8">The Studio</p>
+              <Reveal>
+                <div className="polaroid mx-auto max-w-[260px] rotate-2 md:mx-0">
+                  <div className="polaroid-tape" />
+                  <img src="/me/about.jpg" alt="Ettienne, candid" />
+                  <p className="handwritten mt-2 text-center text-lg text-graphite">
+                    probably mid-thought about a layout
+                  </p>
+                </div>
+              </Reveal>
+
+              <p className="eyebrow mb-8 mt-12">The Studio</p>
               <dl className="space-y-6 text-sm">
                 <div>
                   <dt className="text-graphite/40">Founder</dt>
@@ -19,13 +29,27 @@ export default function About() {
                 </div>
                 <div>
                   <dt className="text-graphite/40">Based</dt>
-                  <dd className="mt-1 text-graphite">South Africa</dd>
+                  <dd className="mt-1 text-graphite">Welkom, South Africa</dd>
                 </div>
                 <div>
                   <dt className="text-graphite/40">Established</dt>
                   <dd className="mt-1 text-graphite">2025</dd>
                 </div>
               </dl>
+
+              <ul className="mt-10 flex flex-wrap gap-2">
+                {chips.map((c, i) => (
+                  <li
+                    key={c}
+                    className={`handwritten rounded-full bg-forest px-4 py-1.5 text-base text-gold ${
+                      i % 2 ? 'rotate-1' : '-rotate-1'
+                    }`}
+                  >
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <p className="handwritten mt-6 text-2xl text-gold">— xo, Ettienne</p>
             </div>
           </aside>
 
@@ -60,10 +84,12 @@ export default function About() {
               </Reveal>
               <Reveal delay={0.1}>
                 <p>
-                  As a new studio, the projects showcased here are conceptual case studies
-                  created to demonstrate creative thinking, design systems, and development
-                  capabilities. Each project is approached exactly as a real client project
-                  would be:
+                  I&rsquo;m <strong className="text-forest">self-taught</strong> — a little
+                  obsessive about details nobody else notices, and genuinely happiest when a
+                  layout finally clicks. By Ettienne started as a one-page-site side hustle in
+                  Welkom, and somewhere along the way it became the thing I actually care
+                  about. Every project below is a real, live business, not a concept — I treat
+                  each one exactly as I&rsquo;d want to be treated as a client:
                 </p>
               </Reveal>
             </div>
@@ -71,10 +97,10 @@ export default function About() {
             {/* The working method */}
             <Reveal delay={0.05}>
               <ul className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-4">
-                {steps.map((s, i) => (
+                {['Strategy', 'Research', 'Design', 'Development', 'Refinement'].map((s, i, arr) => (
                   <li key={s} className="flex items-center gap-3">
                     <span className="font-display text-2xl text-forest md:text-3xl">{s}</span>
-                    {i < steps.length - 1 && <span className="text-sage">/</span>}
+                    {i < arr.length - 1 && <span className="text-sage">/</span>}
                   </li>
                 ))}
               </ul>

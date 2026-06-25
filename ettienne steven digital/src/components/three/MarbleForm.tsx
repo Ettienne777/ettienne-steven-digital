@@ -6,53 +6,56 @@ import { viewport } from '../../lib/viewport'
 import { lerp } from '../../lib/utils'
 
 /**
- * The sculptural centrepiece. A polished marble-glass form that catches the
- * studio environment for real reflections. It begins organic and resolves
- * toward a calmer, architectural mass as the hero scrolls away.
+ * The sculptural centrepiece. Begins as an organic, marble-like form (forest /
+ * nature) and resolves toward a calmer, more architectural mass as the hero
+ * scrolls away — the mist → marble → architecture arc, in one object.
  */
 export default function MarbleForm() {
   const group = useRef<THREE.Group>(null)
   const mat = useRef<any>(null)
-  const t = useRef(0)
 
   useFrame((_, delta) => {
     if (!group.current) return
-    t.current += delta
     const p = viewport.heroProgress // 0 at top, 1 once hero has left
 
     // Ambient rotation, nudged by the pointer for mouse-reactive depth.
-    group.current.rotation.y += delta * 0.14
-    group.current.rotation.x = lerp(group.current.rotation.x, viewport.smoothPointer.y * 0.3, 0.05)
-    group.current.rotation.z = lerp(group.current.rotation.z, viewport.smoothPointer.x * -0.22, 0.05)
+    group.current.rotation.y += delta * 0.12
+    group.current.rotation.x = lerp(
+      group.current.rotation.x,
+      viewport.smoothPointer.y * 0.25,
+      0.05,
+    )
+    group.current.rotation.z = lerp(
+      group.current.rotation.z,
+      viewport.smoothPointer.x * -0.18,
+      0.05,
+    )
 
-    // Drift back as we scroll into the architecture, with a gentle breath.
-    group.current.position.z = lerp(group.current.position.z, -p * 1.6, 0.06)
-    const breathe = Math.sin(t.current * 0.6) * 0.035
-    const target = lerp(1.06, 0.82, p) + breathe
-    group.current.scale.setScalar(lerp(group.current.scale.x, target, 0.06))
+    // Drift back and shrink slightly as we scroll into the architecture.
+    group.current.position.z = lerp(group.current.position.z, -p * 1.4, 0.06)
+    const s = lerp(1, 0.82, p)
+    group.current.scale.setScalar(lerp(group.current.scale.x, s, 0.06))
 
     // Organic → resolved: distortion eases off as the journey hardens.
     if (mat.current) {
-      mat.current.distort = lerp(mat.current.distort ?? 0.5, lerp(0.52, 0.12, p), 0.05)
-      mat.current.speed = lerp(mat.current.speed ?? 1.6, lerp(1.7, 0.5, p), 0.05)
+      mat.current.distort = lerp(mat.current.distort ?? 0.4, lerp(0.42, 0.1, p), 0.05)
+      mat.current.speed = lerp(mat.current.speed ?? 1.2, lerp(1.4, 0.5, p), 0.05)
     }
   })
 
   return (
-    <Float speed={1.3} rotationIntensity={0.35} floatIntensity={0.9}>
+    <Float speed={1.1} rotationIntensity={0.25} floatIntensity={0.6}>
       <group ref={group}>
         <mesh>
-          <icosahedronGeometry args={[1.6, 20]} />
+          <icosahedronGeometry args={[1.45, 16]} />
           <MeshDistortMaterial
             ref={mat}
-            color="#EDEAE3"
-            roughness={0.12}
-            metalness={0.04}
-            clearcoat={1}
-            clearcoatRoughness={0.22}
-            envMapIntensity={1.5}
-            distort={0.52}
-            speed={1.7}
+            color="#D9D5CE"
+            roughness={0.45}
+            metalness={0.12}
+            distort={0.42}
+            speed={1.4}
+            flatShading={false}
           />
         </mesh>
       </group>

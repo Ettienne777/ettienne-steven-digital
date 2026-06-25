@@ -2,6 +2,7 @@ import { scrollTo } from '../../lib/scroll'
 
 const email = 'Ettienne06@icloud.com'
 const phone = '063 023 2145'
+const whatsapp = 'https://wa.me/27630232145'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -19,6 +20,9 @@ export default function Footer() {
           <div className="flex flex-col gap-2 text-sm text-graphite/70">
             <span className="eyebrow mb-2 text-graphite/40">Contact</span>
             <span className="text-graphite">Ettienne</span>
+            <a data-cursor="hover" href={whatsapp} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-forest">
+              WhatsApp
+            </a>
             <a data-cursor="hover" href={`mailto:${email}`} className="transition-colors hover:text-forest">
               {email}
             </a>

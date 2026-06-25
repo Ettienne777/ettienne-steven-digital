@@ -7,19 +7,12 @@ import { viewport } from '../../lib/viewport'
 interface ParticlesProps {
   count?: number
   color?: string
-  size?: number
-  depth?: number
 }
 
 const RANGE = 16
 
 /** A drifting field of light motes rendered as a single GPU point cloud. */
-export default function Particles({
-  count = 900,
-  color = '#70826B',
-  size = 32,
-  depth = 8,
-}: ParticlesProps) {
+export default function Particles({ count = 900, color = '#70826B' }: ParticlesProps) {
   const matRef = useRef<THREE.ShaderMaterial>(null)
   const { gl } = useThree()
 
@@ -31,24 +24,24 @@ export default function Particles({
     for (let i = 0; i < count; i++) {
       positions[i * 3 + 0] = (Math.random() - 0.5) * 14
       positions[i * 3 + 1] = (Math.random() - 0.5) * RANGE
-      positions[i * 3 + 2] = (Math.random() - 0.5) * depth
-      scales[i] = Math.random() * 0.85 + 0.15
-      speeds[i] = Math.random() * 0.5 + 0.12
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 8
+      scales[i] = Math.random() * 0.8 + 0.2
+      speeds[i] = Math.random() * 0.5 + 0.15
       offsets[i] = Math.random() * Math.PI * 2
     }
     return { positions, scales, speeds, offsets }
-  }, [count, depth])
+  }, [count])
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uSize: { value: size },
+      uSize: { value: 26 },
       uPixelRatio: { value: Math.min(gl.getPixelRatio(), 2) },
       uPointer: { value: new THREE.Vector2(0, 0) },
       uColor: { value: new THREE.Color(color) },
       uRange: { value: RANGE },
     }),
-    [color, gl, size],
+    [color, gl],
   )
 
   useFrame((_, delta) => {

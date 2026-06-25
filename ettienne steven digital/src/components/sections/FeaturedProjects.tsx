@@ -5,62 +5,48 @@ import { projects, type Project } from '../../data/projects'
 import RevealText from '../ui/RevealText'
 import Reveal from '../ui/Reveal'
 
-/** Art-directed visual plate built from each project's own palette — no stock imagery. */
-function ProjectVisual({ project, idx }: { project: Project; idx: number }) {
+/** Real screenshot of the live site, framed like a browser window. */
+function ProjectVisual({ project }: { project: Project; idx: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   })
-  const y = useTransform(scrollYProgress, [0, 1], ['8%', '-8%'])
+  const y = useTransform(scrollYProgress, [0, 1], ['6%', '-6%'])
   const { bg, ink, accent } = project.palette
 
   return (
     <div
       ref={ref}
-      className="relative aspect-[4/5] w-full overflow-hidden rounded-[2px] md:aspect-[5/6]"
-      style={{ backgroundColor: bg }}
+      className="relative aspect-[16/11] w-full overflow-hidden rounded-[6px] border"
+      style={{ backgroundColor: bg, borderColor: `${ink}1a` }}
     >
-      {/* Ghosted wordmark */}
+      {/* Ghosted index number, sits behind the screenshot */}
       <motion.span
         style={{ y, color: ink }}
-        className="pointer-events-none absolute -left-2 bottom-4 select-none font-display text-[22vw] font-light leading-none opacity-[0.08] md:text-[12vw]"
+        className="pointer-events-none absolute -left-2 bottom-2 select-none font-display text-[22vw] font-light leading-none opacity-[0.06] md:text-[10vw]"
       >
         {project.index}
       </motion.span>
 
-      {/* Composition that varies per project */}
-      <div className="absolute inset-0 transition-transform duration-700 ease-[var(--ease)] group-hover:scale-[1.04]">
-        {idx === 0 && (
-          <>
-            <div className="absolute left-1/2 top-1/2 h-[60%] w-px -translate-x-1/2 -translate-y-1/2" style={{ backgroundColor: accent, opacity: 0.5 }} />
-            <div className="absolute left-1/2 top-1/2 h-[44%] w-[44%] -translate-x-1/2 -translate-y-1/2 rounded-full border" style={{ borderColor: accent }} />
-            <div className="absolute left-1/2 top-1/2 h-[20%] w-[20%] -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ backgroundColor: accent, opacity: 0.85 }} />
-          </>
-        )}
-        {idx === 1 && (
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(60% 50% at 50% 60%, ${accent}55, transparent 70%), radial-gradient(40% 40% at 65% 30%, ${accent}40, transparent 70%)`,
-            }}
-          />
-        )}
-        {idx === 2 && (
-          <>
-            <div className="absolute inset-x-[18%] top-[16%] bottom-[34%]" style={{ backgroundColor: accent, opacity: 0.16 }} />
-            <div className="absolute inset-x-[28%] top-[28%] bottom-[22%]" style={{ backgroundColor: accent, opacity: 0.28 }} />
-            <div className="absolute inset-x-[38%] top-[40%] bottom-[10%]" style={{ backgroundColor: accent, opacity: 0.5 }} />
-          </>
-        )}
+      {/* Faux browser chrome so it reads unmistakably as "a real, live website" */}
+      <div
+        className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-4 py-2.5"
+        style={{ backgroundColor: bg, borderBottom: `1px solid ${ink}14` }}
+      >
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: accent, opacity: 0.6 }} />
+          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: ink, opacity: 0.18 }} />
+          <span className="h-2 w-2 rounded-full" style={{ backgroundColor: ink, opacity: 0.18 }} />
+        </div>
+        <span className="text-[10px] uppercase tracking-[0.22em]" style={{ color: ink, opacity: 0.45 }}>
+          {project.year}
+        </span>
       </div>
 
-      <span
-        className="absolute right-4 top-4 text-[10px] uppercase tracking-[0.22em]"
-        style={{ color: ink, opacity: 0.5 }}
-      >
-        {project.year}
-      </span>
+      <div className="absolute inset-x-0 bottom-0 top-9 overflow-hidden transition-transform duration-700 ease-[var(--ease)] group-hover:scale-[1.04]">
+        <img src={project.image} alt={`${project.name} — live site`} className="h-full w-full object-cover object-top" />
+      </div>
     </div>
   )
 }
@@ -122,14 +108,14 @@ export default function FeaturedProjects() {
           <p className="eyebrow mb-8">Selected Work</p>
           <RevealText
             as="h2"
-            text="Concept Studies"
+            text="Real Clients, Real Sites"
             className="font-display text-6xl font-light leading-[0.98] text-forest md:text-8xl"
           />
           <Reveal delay={0.1}>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-graphite/60">
-              Self-initiated projects, created to demonstrate creative thinking, design
-              systems and development capability. Each is approached exactly as a real
-              client engagement would be — strategy through to refinement.
+              No mock-ups here — these are live businesses, built and deployed exactly the way
+              I&rsquo;d build yours: strategy through to refinement, then handed over and kept
+              running.
             </p>
           </Reveal>
         </div>
